@@ -1,0 +1,427 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
+  --breakpoint-3xl: 1920px;
+}
+
+:root {
+  --background: #f8f6f1;
+  --foreground: #1a1a1a;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8f6f1;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Custom scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: rgba(26,26,26,0.04); }
+::-webkit-scrollbar-thumb {
+  background: #E85D04;
+  border-radius: 3px;
+}
+
+/* ── Paper card (replaces glassmorphism) ────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(26,26,26,0.09);
+  box-shadow: 0 1px 6px rgba(26,26,26,0.06);
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid rgba(26,26,26,0.09);
+  box-shadow: 0 2px 12px rgba(26,26,26,0.06);
+  border-radius: 16px;
+  transition: background 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform;
+}
+
+.glass-card:hover {
+  background: #faf8f4;
+  border-color: rgba(232,93,4,0.22);
+  box-shadow: 0 6px 28px rgba(26,26,26,0.1);
+}
+
+/* ── Navigation ─────────────────────────────────────────────── */
+.glass-nav {
+  background: rgba(248,246,241,0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+              -webkit-backdrop-filter 0.4s ease, border-color 0.4s ease;
+}
+
+.glass-nav.scrolled {
+  background: rgba(248,246,241,0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(26,26,26,0.08);
+}
+
+/* ── Accent text (replaces gradient text) ───────────────────── */
+.gradient-text {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: #E85D04;
+  color: #E85D04;
+}
+
+.gradient-text-vivid {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: #E85D04;
+  color: #E85D04;
+}
+
+/* ── Section label ──────────────────────────────────────────── */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #E85D04;
+  display: inline-block;
+}
+
+/* ── Timeline ───────────────────────────────────────────────── */
+.timeline-line {
+  width: 2px;
+  background: rgba(232,93,4,0.2);
+  border-radius: 2px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #E85D04;
+  box-shadow: 0 0 0 4px rgba(232,93,4,0.12);
+  flex-shrink: 0;
+}
+
+/* ── Progress bars ──────────────────────────────────────────── */
+.progress-track {
+  background: rgba(26,26,26,0.08);
+  border-radius: 100px;
+  height: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: #E85D04;
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C94A00;
+  box-shadow: 0 0 6px rgba(200,74,0,0.45);
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: white;
+  background: #E85D04;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient:hover {
+  background: #C94A00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232,93,4,0.28);
+}
+
+.btn-gradient:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #1a1a1a;
+  background: transparent;
+  border: 1px solid rgba(26,26,26,0.22);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: #E85D04;
+  color: #E85D04;
+  background: rgba(232,93,4,0.05);
+  transform: translateY(-2px);
+}
+
+.btn-outline:active { transform: translateY(0); }
+
+/* ── Form fields ────────────────────────────────────────────── */
+.form-field {
+  background: #f8f6f1;
+  border: 1px solid rgba(26,26,26,0.15);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: #1a1a1a;
+  width: 100%;
+  font-size: 15px;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-field::placeholder { color: rgba(26,26,26,0.3); }
+
+.form-field:focus {
+  border-color: rgba(232,93,4,0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(232,93,4,0.1);
+}
+
+.form-field.has-error {
+  border-color: rgba(220,38,38,0.5);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+}
+
+/* ── Scroll reveal ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+              transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+              transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+              transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+              transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
+
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
+
+/* ── Keyframe animations ────────────────────────────────────── */
+@keyframes floatY {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-14px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+
+@keyframes blobFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  25%      { transform: translate(45px,-35px) scale(1.06); }
+  50%      { transform: translate(-20px,30px) scale(0.94); }
+  75%      { transform: translate(25px,18px) scale(1.03); }
+}
+
+.animate-blob   { animation: blobFloat 22s ease-in-out infinite; }
+.animate-blob-2 { animation: blobFloat 28s ease-in-out infinite reverse; }
+.animate-blob-3 { animation: blobFloat 17s ease-in-out infinite 7s; }
+
+.animate-float   { animation: floatY 6s ease-in-out infinite; }
+.animate-float-2 { animation: floatY 8s ease-in-out infinite 1.5s; }
+.animate-float-3 { animation: floatY 7s ease-in-out infinite 3.2s; }
+
+.animate-spin-slow { animation: spin 5s linear infinite; }
+
+/* ── Print / PDF ────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm 1.2cm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  [data-pdf-hide] {
+    display: none !important;
+  }
+
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Root wrapper relied on 100vh, which misbehaves across paginated print
+     rendering and was the source of the stretched/glitchy PDF layout. */
+  .dash-root {
+    min-height: auto !important;
+  }
+
+  /* Collapse the flex two-column layout into a single stacked column so
+     nothing gets squeezed or scaled to fit the page width. */
+  .dash-cols {
+    display: block !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* Unfreeze sidebar for print */
+  aside {
+    position: static !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+
+  main {
+    width: 100% !important;
+  }
+
+  /* aspect-ratio boxes collapse unpredictably across paginated print
+     rendering — swap them for explicit heights instead. */
+  .dash-showcase {
+    aspect-ratio: auto !important;
+    height: 260px !important;
+  }
+
+  .dash-project-img {
+    aspect-ratio: auto !important;
+    height: 150px !important;
+    border-radius: 14px 14px 0 0 !important;
+  }
+
+  .dash-feature-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .dash-portfolio-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .dash-why-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dash-project-card,
+  .dash-feature-grid > div,
+  .dash-why-grid > div,
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Chromium clips overflow:hidden boxes at the page edge even when
+     break-inside:avoid moves the whole element to the next page — that's
+     what was cutting off the tag/link buttons on the project cards. */
+  .dash-project-card,
+  .dash-showcase {
+    overflow: visible !important;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+}
+
+/* Hero entry animations */
+.hero-fade-1 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+.hero-fade-2 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.22s both; }
+.hero-fade-3 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.34s both; }
+.hero-fade-4 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.46s both; }
+.hero-fade-5 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.58s both; }
+.hero-fade-6 { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.70s both; }
+.hero-img    { animation: fadeInScale 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
