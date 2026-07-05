@@ -242,7 +242,7 @@ export default function Dashboard() {
       </div>
 
       {/* Floating contact button */}
-      <div data-pdf-hide style={{
+      <div data-pdf-hide className="dash-fab" style={{
         position: "fixed", bottom: fabBottom, right: 24, zIndex: 100,
         display: "flex", alignItems: "center", height: 56, borderRadius: 28,
         background: GOLD, boxShadow: "0 6px 20px rgba(200,168,107,0.5)",
@@ -289,7 +289,7 @@ export default function Dashboard() {
       <div className="dash-cols" style={{ display: "flex", padding: "36px 32px 80px", gap: 32, alignItems: "flex-start" }}>
 
         {/* ════════ SIDEBAR ════════ */}
-        <aside style={{
+        <aside className="dash-aside" style={{
           width: "29%", flexShrink: 0,
           position: "sticky", top: 32,
           maxHeight: "calc(100vh - 64px)", overflowY: "auto",
@@ -468,7 +468,7 @@ export default function Dashboard() {
       </div>
 
       {/* Footer */}
-      <footer ref={footerRef} style={{ background: "#0f0f0f", padding: "26px 32px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: 20 }}>
+      <footer ref={footerRef} className="dash-footer" style={{ background: "#0f0f0f", padding: "26px 32px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: 20 }}>
         <div>
           <p style={{ fontFamily: "var(--font-playfair)", fontSize: 13.5, color: "#fff", fontWeight: 600, marginBottom: 3 }}>
             &ldquo;Simplicity is the ultimate sophistication.&rdquo;
