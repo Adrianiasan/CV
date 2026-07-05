@@ -313,8 +313,8 @@ export default function Dashboard() {
                 style={{ display: "inline-block", position: "relative", border: "none", background: "none", padding: 0, cursor: "pointer" }}
               >
                 <div style={{ position: "absolute", inset: -3, borderRadius: "50%", background: `linear-gradient(135deg, ${GOLD}, #e8d49a)` }} />
-                <img src="/photo_2026-06-12_16-31-59.jpg" alt="Adrian Iașan"
-                  style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 18%", border: "3px solid #fff", position: "relative", display: "block" }} />
+                <img src="/cv.jpg" alt="Adrian Iașan"
+                  style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 35%", border: "3px solid #fff", position: "relative", display: "block" }} />
               </button>
             </div>
 
@@ -565,7 +565,7 @@ export default function Dashboard() {
             <IcoClose size={18} />
           </button>
           <img
-            src="/photo_2026-06-12_16-31-59.jpg"
+            src="/cv.jpg"
             alt="Adrian Iașan"
             onClick={(e) => e.stopPropagation()}
             style={{
