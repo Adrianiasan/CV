@@ -77,6 +77,7 @@ const softSkills: { icon: ReactNode; label: SL }[] = [
 const L: Record<string, SL> = {
   devTitle:      { ro: "WEB DESIGNER & DEVELOPER",   ru: "ВЕБ-ДИЗАЙНЕР & РАЗРАБОТЧИК", en: "WEB DESIGNER & DEVELOPER" },
   aboutLbl:      { ro: "Despre mine",                ru: "Обо мне",                    en: "About me" },
+  aboutHook:     { ro: "Colaborez îndeaproape cu fiecare client și mă adaptez la orice cerință — de la prima idee până la lansare.", ru: "Тесно сотрудничаю с каждым клиентом и подстраиваюсь под любые пожелания — от первой идеи до запуска.", en: "I work closely with every client and adapt to any requirement — from the first idea to launch." },
   skillsLbl:     { ro: "Competențe",                 ru: "Навыки",                     en: "Skills" },
   toolsLbl:      { ro: "Unelte",                     ru: "Инструменты",                en: "Tools" },
   softLbl:       { ro: "Soft Skills",                ru: "Гибкие навыки",              en: "Soft Skills" },
@@ -191,6 +192,7 @@ export default function Dashboard() {
   const NEXT_LABEL: Record<Lang, string> = { ro: "RU", ru: "EN", en: "RO" };
   const toggleLang = () => setLang(LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]);
   const [contactOpen, setContactOpen] = useState(false);
+  const [photoOpen, setPhotoOpen] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
   const [fabBottom, setFabBottom] = useState(24);
 
@@ -305,11 +307,15 @@ export default function Dashboard() {
 
             {/* Photo */}
             <div style={{ textAlign: "center", marginBottom: 16 }}>
-              <div style={{ display: "inline-block", position: "relative" }}>
+              <button
+                onClick={() => setPhotoOpen(true)}
+                aria-label="Vezi fotografia mărită"
+                style={{ display: "inline-block", position: "relative", border: "none", background: "none", padding: 0, cursor: "pointer" }}
+              >
                 <div style={{ position: "absolute", inset: -3, borderRadius: "50%", background: `linear-gradient(135deg, ${GOLD}, #e8d49a)` }} />
                 <img src="/photo_2026-06-12_16-31-59.jpg" alt="Adrian Iașan"
                   style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 18%", border: "3px solid #fff", position: "relative", display: "block" }} />
-              </div>
+              </button>
             </div>
 
             {/* Name + title */}
@@ -341,6 +347,11 @@ export default function Dashboard() {
 
             {/* Despre mine */}
             <div style={{ marginBottom: 6 }}>
+              <div style={{ background: GOLDB, border: `1px solid rgba(200,168,107,0.28)`, borderRadius: 10, padding: "10px 12px", marginBottom: 14 }}>
+                <p style={{ fontSize: 12, fontWeight: 700, fontStyle: "italic", lineHeight: 1.55, color: "#6b4e1a" }}>
+                  {lbl("aboutHook")}
+                </p>
+              </div>
               <SidebarLabel>{lbl("aboutLbl")}</SidebarLabel>
               <p style={{ fontSize: 12.5, lineHeight: 1.72, color: MUTED }}>{h.bio[lang]}</p>
             </div>
@@ -529,6 +540,42 @@ export default function Dashboard() {
           </button>
         </div>
       </footer>
+
+      {/* Photo lightbox */}
+      {photoOpen && (
+        <div
+          data-pdf-hide
+          onClick={() => setPhotoOpen(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 200,
+            background: "rgba(10,10,10,0.85)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 24, cursor: "pointer",
+          }}
+        >
+          <button
+            onClick={() => setPhotoOpen(false)}
+            aria-label="Închide"
+            style={{
+              position: "fixed", top: 20, right: 24, width: 40, height: 40, borderRadius: "50%",
+              background: "rgba(255,255,255,0.1)", border: "1.5px solid rgba(255,255,255,0.3)",
+              color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >
+            <IcoClose size={18} />
+          </button>
+          <img
+            src="/photo_2026-06-12_16-31-59.jpg"
+            alt="Adrian Iașan"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: "96vw", maxHeight: "96vh", width: "auto", height: "auto",
+              borderRadius: 16, border: `3px solid ${GOLD}`, boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              objectFit: "contain", cursor: "default",
+            }}
+          />
+        </div>
+      )}
 
     </div>
   );
