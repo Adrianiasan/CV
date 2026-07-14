@@ -284,6 +284,29 @@ export default function Dashboard() {
         </button>
       </div>
 
+      {/* Hero photo */}
+      <div style={{ display: "flex", justifyContent: "center", padding: "80px 24px 0" }}>
+        <div style={{
+          position: "relative", height: "50vh", width: "calc(50vh * 9 / 16)", maxWidth: "92vw",
+          borderRadius: 20, overflow: "hidden", boxShadow: "0 10px 40px rgba(0,0,0,0.25)",
+        }}>
+          <img src="/cv.jpg" alt="Adrian Iașan"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", display: "block" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.8) 100%)" }} />
+          <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "28px 22px", textAlign: "center" }}>
+            <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "1.8rem", fontWeight: 700, color: "#fff", lineHeight: 1.1, marginBottom: 8 }}>
+              Adrian Iașan
+            </h1>
+            <p style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: "0.18em", color: GOLD, textTransform: "uppercase", marginBottom: 10 }}>
+              {lbl("devTitle")}
+            </p>
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: "rgba(255,255,255,0.85)" }}>
+              {h.tagline[lang]}
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Two-column wrapper */}
       <div className="dash-cols" style={{ display: "flex", padding: "36px 32px 80px", gap: 32, alignItems: "flex-start" }}>
 
