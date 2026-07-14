@@ -48,14 +48,11 @@ const IcoClock    = () => <svg {...stroke(s20)}><circle cx="12" cy="12" r="10"/>
 const IcoTrend    = () => <svg {...stroke(s20)}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>;
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const SKILLS = [
-  { name: "HTML / CSS",      pct: 92 },
-  { name: "JavaScript",      pct: 90 },
-  { name: "React / Next.js", pct: 88 },
-  { name: "UI / UX",         pct: 82 },
-  { name: "SEO",             pct: 75 },
-  { name: "Performance",     pct: 80 },
-];
+const skillsEssay: SL = {
+  ro: "Construiesc site-uri de la zero, de la codul care le face să funcționeze (HTML, CSS, JavaScript, React / Next.js) până la aspectul lor vizual (UI/UX). Am grijă ca paginile să se încarce rapid și să fie găsite ușor pe Google (performanță și SEO).",
+  ru: "Создаю сайты с нуля — от кода, который заставляет их работать (HTML, CSS, JavaScript, React / Next.js), до внешнего вида (UI/UX). Слежу за тем, чтобы страницы загружались быстро и легко находились в Google (производительность и SEO).",
+  en: "I build websites from scratch — from the code that makes them work (HTML, CSS, JavaScript, React / Next.js) to how they look and feel (UI/UX). I make sure pages load fast and are easy to find on Google (performance and SEO).",
+};
 
 const TOOLS = ["VSCode"];
 
@@ -97,9 +94,9 @@ const portfolio: { name: string; tag: string; desc: SL; accentColor: string; ima
     accentColor: "#0ea5e9", image: "/Screenshot_2077.png", link: "https://zubmed.md",
   },
   {
-    name: "EcoDent", tag: "Dental / Eco",
-    desc: { ro: "Landing page modern pentru clinică dentară eco-friendly, cu booking online.", ru: "Современный лендинг для эко-стоматологии с онлайн-записью.", en: "Modern landing page for an eco-friendly dental clinic with online booking." },
-    accentColor: "#22c55e", image: "/Screenshot_2075.png", imgPos: "center", link: "https://ecodent.md/ru",
+    name: "Tancul T-34", tag: "Istorie / Monument",
+    desc: { ro: "Site de documentare istorică dedicat monumentului T-34 din Comrat și eliberării orașului în 1944.", ru: "Сайт-документация, посвящённый памятнику Т-34 в Комрате и освобождению города в 1944 году.", en: "Historical documentation site dedicated to the T-34 tank monument in Comrat and the city's liberation in 1944." },
+    accentColor: "#8a6d3b", image: "/Screenshot_t34.png", link: "https://t34-monument.vercel.app",
   },
   {
     name: "iSport", tag: "Sport / Fitness",
@@ -361,17 +358,7 @@ export default function Dashboard() {
             {/* Skills */}
             <div style={{ marginBottom: 6 }}>
               <SidebarLabel>{lbl("skillsLbl")}</SidebarLabel>
-              {SKILLS.map(({ name, pct }) => (
-                <div key={name} style={{ marginBottom: 9 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                    <span style={{ fontSize: 12, color: "#333", fontWeight: 500 }}>{name}</span>
-                    <span style={{ fontSize: 10.5, color: GOLD, fontWeight: 700 }}>{pct}%</span>
-                  </div>
-                  <div style={{ height: 4, background: "rgba(0,0,0,0.07)", borderRadius: 2, overflow: "hidden" }}>
-                    <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${GOLD}, #e0c07e)`, borderRadius: 2 }} />
-                  </div>
-                </div>
-              ))}
+              <p style={{ fontSize: 12.5, lineHeight: 1.72, color: MUTED }}>{skillsEssay[lang]}</p>
             </div>
 
             <Divider />
